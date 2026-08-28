@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Uranus: A Typora Theme" width="640">
+</p>
+
 # Typora Uranus Theme
 
 천왕성을 모티프로 삼은 Typora 라이트 테마입니다. 한글로 작성된 긴 리뷰 문서를 오랫동안 읽어도 눈이 덜 피로하도록 조판했습니다.
