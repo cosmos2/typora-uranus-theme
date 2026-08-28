@@ -66,7 +66,52 @@
 
 ## 설치
 
-### 1. 폰트 설치
+### 빠른 설치
+
+터미널에서 아래 명령을 실행하면 최신 릴리스를 내려받아 Typora 테마 폴더에 바로 넣습니다.
+
+**macOS**
+
+```sh
+curl -sL https://github.com/cosmos2/typora-uranus-theme/releases/latest/download/typora-uranus-theme.zip -o /tmp/uranus.zip \
+  && unzip -o /tmp/uranus.zip -d "$HOME/Library/Application Support/abnerworks.Typora/themes"
+```
+
+**Linux**
+
+```sh
+curl -sL https://github.com/cosmos2/typora-uranus-theme/releases/latest/download/typora-uranus-theme.zip -o /tmp/uranus.zip \
+  && unzip -o /tmp/uranus.zip -d "$HOME/.config/Typora/themes"
+```
+
+**Windows (PowerShell)**
+
+```powershell
+$url = "https://github.com/cosmos2/typora-uranus-theme/releases/latest/download/typora-uranus-theme.zip"
+Invoke-WebRequest $url -OutFile "$env:TEMP\uranus.zip"
+Expand-Archive "$env:TEMP\uranus.zip" -DestinationPath "$env:APPDATA\Typora\themes" -Force
+```
+
+설치한 뒤 Typora를 다시 시작하면 `테마` 메뉴에 **Uranus**와 **Uranus White**가 나타납니다.
+
+### 직접 내려받아 설치
+
+1. [최신 릴리스](https://github.com/cosmos2/typora-uranus-theme/releases/latest)에서 `typora-uranus-theme.zip`을 내려받고 압축을 풉니다.
+2. Typora에서 `환경 설정 → 외관 → 테마 폴더 열기`를 눌러 테마 폴더를 엽니다.
+3. 압축을 푼 `uranus.css`와 `uranus-white.css`를 그 폴더에 복사합니다. 두 파일은 반드시 같은 폴더에 있어야 합니다. `uranus-white.css`가 `@import`로 `uranus.css`를 불러오기 때문입니다.
+4. Typora를 다시 시작합니다.
+
+운영체제별 테마 폴더의 기본 경로는 다음과 같습니다.
+
+| 운영체제 | 경로 |
+| --- | --- |
+| macOS | `~/Library/Application Support/abnerworks.Typora/themes` |
+| Windows | `%APPDATA%\Typora\themes` |
+| Linux | `~/.config/Typora/themes` |
+
+### 폰트 설치
+
+폰트가 설치되어 있지 않아도 테마는 정상적으로 동작하며, 없는 폰트는 시스템 기본 고정폭 폰트로 대체됩니다. 다만 의도한 조판을 그대로 보시려면 아래 세 가지를 설치하시기 바랍니다.
 
 | 폰트 | 용도 | 내려받기 |
 | --- | --- | --- |
@@ -76,21 +121,11 @@
 
 D2Coding은 배포 파일 안에 일반 버전과 ligature 버전이 함께 들어 있습니다. 두 가지를 모두 설치해도 무방하지만, 테마가 참조하는 이름은 `D2Coding ligature`입니다.
 
-### 2. 테마 파일 복사
+macOS에서 [Homebrew](https://brew.sh)를 사용하신다면 아래 명령으로 한 번에 설치할 수 있습니다.
 
-Typora의 `환경 설정 → 외관 → 테마 폴더 열기`를 눌러 테마 폴더를 연 다음, `uranus.css`와 `uranus-white.css`를 그 안에 복사합니다. 두 파일은 반드시 같은 폴더에 있어야 합니다. `uranus-white.css`가 `@import`로 `uranus.css`를 불러오기 때문입니다.
-
-운영체제별 기본 경로는 다음과 같습니다.
-
-| 운영체제 | 경로 |
-| --- | --- |
-| macOS | `~/Library/Application Support/abnerworks.Typora/themes` |
-| Windows | `%APPDATA%\Typora\themes` |
-| Linux | `~/.config/Typora/themes` |
-
-### 3. Typora 다시 시작
-
-Typora를 다시 실행하면 `테마` 메뉴에 **Uranus**와 **Uranus White**가 나타납니다.
+```sh
+brew install --cask font-d2coding font-fira-code font-pretendard
+```
 
 ## 사용자 정의
 
