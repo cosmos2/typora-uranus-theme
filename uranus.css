@@ -1,0 +1,1400 @@
+/*
+ * Uranus — a light Typora theme tuned for long-form Korean review documents.
+ *
+ * Korean : D2Coding ligature
+ * Latin  : Fira Code (its ligature set is the ancestor of D2Coding ligature's,
+ *          so the two families draw the same shapes for ->, =>, != and friends)
+ * UI     : Pretendard
+ *
+ * Palette: the pale cyan-blue of Uranus, paired with a green of the same value.
+ * Motif  : Uranus is tipped ~98 degrees on its axis, so its rings appear
+ *          vertical. Blockquotes carry that vertical ring; headings carry the
+ *          ring seen edge-on as a thin horizontal gradient.
+ */
+
+:root {
+    /* ---- Uranus blue ---- */
+    --uranus-050: #f2f9fb;
+    --uranus-100: #e4f2f7;
+    --uranus-200: #cbe6ef;
+    --uranus-300: #a6d5e4;
+    --uranus-400: #78bad2;
+    --uranus-500: #4e9cb9;
+    --uranus-600: #35809d;
+    --uranus-700: #256580;
+    --uranus-800: #1b4f66;
+
+    /* ---- companion green ---- */
+    --aqua-050: #f1faf5;
+    --aqua-100: #e2f4ec;
+    --aqua-200: #c6e9da;
+    --aqua-300: #9fd9c2;
+    --aqua-400: #6fc2a4;
+    --aqua-500: #47a486;
+    --aqua-600: #2f886c;
+    --aqua-700: #216c55;
+
+    /* ---- surfaces ---- */
+    --bg-color: #f8fcfd;
+    --window-bg-color: #eef6f9;
+    --side-bar-bg-color: #edf5f8;
+    --panel-bg-color: #f4fafc;
+
+    /* ---- ink ---- */
+    --text-color: #20343b;
+    --heading-color: #1a3d4c;
+    --muted-color: #5e777f;
+    --control-text-color: #5e777f;
+    --active-file-text-color: #16404f;
+
+    /* ---- lines ---- */
+    --border-color: #d5e6ec;
+    --border-strong-color: #bcd9e3;
+    --divider-color: #e2eff4;
+
+    /* ---- interaction ---- */
+    --primary-color: var(--uranus-600);
+    --primary-btn-border-color: var(--uranus-600);
+    --primary-btn-text-color: #ffffff;
+    --accent-color: var(--uranus-700);
+    --accent-hover-color: var(--aqua-700);
+    --select-text-bg-color: #cfe6ef;
+    --item-hover-bg-color: rgba(78, 156, 185, 0.10);
+    --item-hover-text-color: var(--active-file-text-color);
+    --active-file-bg-color: rgba(78, 156, 185, 0.16);
+    --active-file-border-color: var(--uranus-500);
+    --search-hit-bg-color: #d9f0e5;
+    --window-border: 1px solid var(--border-color);
+    --rawblock-edit-panel-bd: var(--border-color);
+    --node-fill: var(--uranus-100);
+
+    /* ---- code ---- */
+    --code-bg-color: #f1f8fa;
+    --code-border-color: #d8e9ef;
+    --code-text-color: #1d3b45;
+    --code-lang-color: #8aa7b0;
+    --code-gutter-color: #9db8c1;
+    --code-activeline-color: rgba(78, 156, 185, 0.07);
+    --inline-code-bg-color: #e9f4f8;
+    --inline-code-text-color: var(--uranus-800);
+    --inline-code-border-color: #d0e6ee;
+
+    --cm-comment: #7f9aa3;
+    --cm-keyword: #6b5bb5;
+    --cm-def: #256580;
+    --cm-string: #2f886c;
+    --cm-number: #a9662d;
+    --cm-builtin: #1d8296;
+    --cm-tag: #35809d;
+    --cm-operator: #3c5a64;
+    --cm-error: #b8453a;
+
+    /* ---- blocks ---- */
+    --quote-bg-color: #f1f9fb;
+    --quote-text-color: #3b5c66;
+    --table-header-bg-color: #eaf4f8;
+    --table-alt-bg-color: #f4fafc;
+    --table-hover-bg-color: rgba(78, 156, 185, 0.06);
+
+    /* ---- alert blocks ---- */
+    --alert-note-line: var(--uranus-400);
+    --alert-note-bg: #eef7fb;
+    --alert-note-fg: var(--uranus-700);
+    --alert-tip-line: var(--aqua-400);
+    --alert-tip-bg: #edf8f2;
+    --alert-tip-fg: var(--aqua-700);
+    --alert-important-line: #9d8ed8;
+    --alert-important-bg: #f2f0fb;
+    --alert-important-fg: #57489b;
+    --alert-warning-line: #dfb168;
+    --alert-warning-bg: #fbf5e9;
+    --alert-warning-fg: #8a6420;
+    --alert-caution-line: #dd9089;
+    --alert-caution-bg: #fbf0ef;
+    --alert-caution-fg: #a3453a;
+
+    /* ---- type ---- */
+    --font-mono: "Fira Code", "FiraCode Nerd Font", "D2Coding ligature", "D2Coding", "SF Mono", Menlo, Consolas, monospace;
+    --monospace: var(--font-mono);
+    --font-ui: Pretendard, "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+
+    --content-width: 820px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+html {
+    font-size: 16.5px;
+    background-color: var(--bg-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-mono);
+    font-variant-ligatures: contextual;
+    font-feature-settings: "calt" 1, "liga" 1;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+
+#write {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 40px 40px 128px;
+    /* Korean wraps at word boundaries, never mid-word. */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    text-align: left;
+}
+
+@media only screen and (min-width: 1500px) {
+    :root {
+        --content-width: 860px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    #write {
+        padding: 28px 22px 96px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 32px;
+}
+
+::selection {
+    background-color: var(--select-text-bg-color);
+}
+
+/* ==========================================================================
+   Headings — the ring, seen edge-on
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1.45;
+    letter-spacing: 0.005em;
+    word-break: keep-all;
+    cursor: text;
+}
+
+h1 {
+    font-size: 1.72em;
+    margin: 0.6rem 0 1.1rem;
+}
+
+h2 {
+    font-size: 1.4em;
+    margin: 2.9rem 0 1.0rem;
+}
+
+h3 {
+    font-size: 1.18em;
+    margin: 2.3rem 0 0.8rem;
+    color: var(--aqua-700);
+}
+
+h4 {
+    font-size: 1.06em;
+    margin: 1.9rem 0 0.7rem;
+}
+
+h5 {
+    font-size: 1em;
+    margin: 1.7rem 0 0.6rem;
+}
+
+h6 {
+    font-size: 0.94em;
+    margin: 1.6rem 0 0.6rem;
+    color: var(--muted-color);
+    letter-spacing: 0.06em;
+}
+
+h1::after,
+h2::after {
+    content: "";
+    display: block;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+h1::after {
+    height: 3px;
+    margin-top: 0.55rem;
+    background: linear-gradient(90deg,
+        var(--uranus-400) 0%,
+        var(--aqua-400) 42%,
+        var(--aqua-200) 68%,
+        transparent 100%);
+}
+
+h2::after {
+    height: 1.5px;
+    margin-top: 0.42rem;
+    background: linear-gradient(90deg,
+        var(--uranus-300) 0%,
+        var(--aqua-200) 46%,
+        transparent 88%);
+}
+
+h3::before {
+    content: "";
+    position: absolute;
+    left: -0.72rem;
+    top: 0.52em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--aqua-400);
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt, h1 code,
+h2 tt, h2 code,
+h3 tt, h3 code,
+h4 tt, h4 code,
+h5 tt, h5 code,
+h6 tt, h6 code {
+    font-size: 0.92em;
+}
+
+.md-header-anchor {
+    color: var(--uranus-300) !important;
+}
+
+/* ==========================================================================
+   Body copy
+   ========================================================================== */
+
+p {
+    margin: 0 0 1.25rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+ul,
+ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.65em;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ul ul {
+    list-style-type: circle;
+}
+
+ul ul ul {
+    list-style-type: square;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+li > ul,
+li > ol {
+    margin-top: 0.5em;
+    margin-bottom: 0.35em;
+}
+
+li::marker {
+    color: var(--uranus-500);
+}
+
+ol li::marker {
+    color: var(--aqua-600);
+}
+
+dt {
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+dd {
+    margin: 0 0 0.9rem 1.4em;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--uranus-300);
+    padding-bottom: 1px;
+    transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+a:hover {
+    color: var(--accent-hover-color);
+    border-bottom-color: var(--aqua-400);
+}
+
+strong,
+b {
+    font-weight: 700;
+    color: var(--uranus-800);
+}
+
+em,
+i {
+    font-style: italic;
+    color: var(--aqua-700);
+}
+
+del,
+s {
+    color: var(--muted-color);
+    text-decoration-color: var(--uranus-300);
+}
+
+mark {
+    background-color: var(--aqua-100);
+    color: var(--aqua-700);
+    border-radius: 3px;
+    padding: 0.08em 0.24em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+mark .md-meta {
+    color: var(--aqua-600);
+}
+
+.md-comment {
+    color: var(--muted-color);
+    opacity: 0.75;
+}
+
+.md-blockmeta {
+    color: var(--uranus-500);
+    font-style: normal;
+}
+
+pre.md-meta-block {
+    font-family: var(--font-mono);
+    font-size: 0.84em;
+    line-height: 1.75;
+    color: var(--muted-color);
+    background: var(--panel-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.6rem;
+}
+
+sub,
+sup {
+    font-size: 0.74em;
+    line-height: 0;
+}
+
+kbd {
+    font-family: var(--font-mono);
+    font-size: 0.84em;
+    padding: 0.12em 0.45em;
+    border: 1px solid var(--border-strong-color);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    background-color: var(--panel-bg-color);
+    color: var(--uranus-800);
+    box-shadow: none;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    margin: 2.6rem 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--uranus-300) 22%,
+        var(--aqua-300) 72%,
+        transparent 100%);
+}
+
+/* ==========================================================================
+   Blockquote — the ring, standing vertically
+   ========================================================================== */
+
+blockquote {
+    margin: 1.5rem 0;
+    padding: 0.15rem 1.35rem;
+    border: 0 solid transparent;
+    border-left-width: 3px;
+    border-image: linear-gradient(180deg, var(--uranus-400) 0%, var(--aqua-400) 100%) 1;
+    background-color: var(--quote-bg-color);
+    color: var(--quote-text-color);
+    border-radius: 0 6px 6px 0;
+}
+
+blockquote > :first-child {
+    margin-top: 1rem;
+}
+
+blockquote > :last-child {
+    margin-bottom: 1rem;
+}
+
+blockquote blockquote {
+    margin: 0.9rem 0;
+    background-color: transparent;
+}
+
+/* ==========================================================================
+   Alert blocks (> [!NOTE] and friends)
+   ========================================================================== */
+
+.md-alert {
+    margin: 1.5rem 0;
+    padding: 0.15rem 1.35rem;
+    border: 0 solid transparent;
+    border-left-width: 3px;
+    border-image: none;
+    border-radius: 0 6px 6px 0;
+    color: var(--text-color);
+}
+
+/* The alert title sits close to its body, not a full paragraph away. */
+.md-alert > :first-child {
+    margin-top: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.md-alert > :last-child {
+    margin-bottom: 1rem;
+}
+
+.md-alert.md-alert-note {
+    border-left-color: var(--alert-note-line);
+    background-color: var(--alert-note-bg);
+}
+
+.md-alert.md-alert-tip {
+    border-left-color: var(--alert-tip-line);
+    background-color: var(--alert-tip-bg);
+}
+
+.md-alert.md-alert-important {
+    border-left-color: var(--alert-important-line);
+    background-color: var(--alert-important-bg);
+}
+
+.md-alert.md-alert-warning {
+    border-left-color: var(--alert-warning-line);
+    background-color: var(--alert-warning-bg);
+}
+
+.md-alert.md-alert-caution {
+    border-left-color: var(--alert-caution-line);
+    background-color: var(--alert-caution-bg);
+}
+
+.md-alert-text,
+[class*="md-alert-text-"] {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.md-alert-text-note,
+.md-alert-note [class*="md-alert-text-"],
+.md-alert-note .md-alert-text {
+    color: var(--alert-note-fg) !important;
+}
+
+.md-alert-text-tip,
+.md-alert-tip [class*="md-alert-text-"],
+.md-alert-tip .md-alert-text {
+    color: var(--alert-tip-fg) !important;
+}
+
+.md-alert-text-important,
+.md-alert-important [class*="md-alert-text-"],
+.md-alert-important .md-alert-text {
+    color: var(--alert-important-fg) !important;
+}
+
+.md-alert-text-warning,
+.md-alert-warning [class*="md-alert-text-"],
+.md-alert-warning .md-alert-text {
+    color: var(--alert-warning-fg) !important;
+}
+
+.md-alert-text-caution,
+.md-alert-caution [class*="md-alert-text-"],
+.md-alert-caution .md-alert-text {
+    color: var(--alert-caution-fg) !important;
+}
+
+/* ==========================================================================
+   Task lists
+   ========================================================================== */
+
+/* Typora sizes the native checkbox through an id-level rule, so the box is
+   drawn on ::before instead of on the input itself. */
+.md-task-list-item > input {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    top: 0;
+    margin-top: calc(0.95em - 8px);
+    margin-left: -1.35em;
+    padding: 0;
+    border: none;
+    outline: none;
+    line-height: 0;
+}
+
+.md-task-list-item > input::before {
+    content: "";
+    display: block;
+    width: 0.95em;
+    height: 0.95em;
+    border: 1.5px solid var(--uranus-400);
+    border-radius: 4px;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 76% 76%;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.md-task-list-item > input:checked::before,
+.md-task-list-item > input[checked]::before {
+    border-color: var(--aqua-600);
+    background-color: var(--aqua-500);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='M3.6 8.4l2.9 2.9 5.9-5.9'/%3E%3C/svg%3E");
+}
+
+/* A finished item recedes so the open ones stay in front. */
+#write .md-task-list-item.task-list-done > p,
+.md-task-list-item > input:checked ~ p,
+.md-task-list-item > input[checked] ~ p {
+    color: var(--muted-color);
+    text-decoration: line-through;
+    text-decoration-color: var(--uranus-300);
+    text-decoration-thickness: 1px;
+}
+
+#write .md-task-list-item.task-list-done > p > .md-link > a,
+#write .md-task-list-item.task-list-done > p > code {
+    color: var(--muted-color);
+}
+
+/* ==========================================================================
+   Code
+   ========================================================================== */
+
+code,
+tt,
+.md-inline-code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    word-break: normal;
+    background-color: var(--inline-code-bg-color);
+    color: var(--inline-code-text-color);
+    border: 1px solid var(--inline-code-border-color);
+    border-radius: 4px;
+    padding: 0.1em 0.36em;
+}
+
+a code,
+a tt {
+    color: var(--accent-color);
+}
+
+pre,
+.md-fences {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    line-height: 1.72;
+    word-break: normal;
+    letter-spacing: 0;
+    background-color: var(--code-bg-color);
+    color: var(--code-text-color);
+    border: 1px solid var(--code-border-color);
+    border-radius: 8px;
+    margin: 1.4rem 0;
+    padding: 1.05rem 1.15rem;
+}
+
+.md-fences {
+    position: relative;
+    padding-top: 1.75rem;
+}
+
+/* Language label, top right. */
+.md-fences[lang]::before {
+    content: attr(lang);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.9rem;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: lowercase;
+    color: var(--code-lang-color);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.md-fences[lang="mermaid"]::before,
+.md-fences[lang="sequence"]::before,
+.md-fences[lang="flow"]::before,
+.md-fences[lang="mathjax"]::before,
+.md-fences[lang="math"]::before,
+.md-fences[lang="vega-lite"]::before {
+    content: none;
+}
+
+/* CodeMirror draws every line as its own <pre>, so the block-level pre
+   styling above has to be undone inside a fence. */
+.md-fences pre,
+.CodeMirror pre,
+pre.CodeMirror-line {
+    margin: 0;
+    padding: 0 4px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.md-fences pre,
+.md-fences code,
+.md-fences tt,
+.md-fences .CodeMirror,
+.md-fences .CodeMirror pre,
+.md-fences .cm-s-inner,
+.md-fences .cm-s-inner span {
+    font-family: var(--font-mono) !important;
+}
+
+.md-fences code,
+.md-fences tt {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+}
+
+.md-fences .CodeMirror,
+.md-fences .CodeMirror-scroll,
+.md-fences .CodeMirror-sizer,
+.md-fences .CodeMirror-gutters,
+.md-fences .CodeMirror-lines {
+    background-color: transparent !important;
+}
+
+.CodeMirror-lines {
+    padding-left: 0;
+}
+
+.md-fences .CodeMirror-cursor {
+    border-left: 1.5px solid var(--uranus-600) !important;
+}
+
+.md-fences .CodeMirror-selected,
+.md-fences .CodeMirror-selectedtext {
+    background-color: var(--select-text-bg-color) !important;
+}
+
+.md-fences .CodeMirror-activeline-background {
+    background-color: var(--code-activeline-color) !important;
+}
+
+.md-fences .CodeMirror-linenumber {
+    color: var(--code-gutter-color) !important;
+}
+
+.md-fences .CodeMirror-matchingbracket {
+    color: var(--aqua-700) !important;
+    background-color: var(--aqua-100) !important;
+}
+
+.cm-s-inner .cm-comment,
+.md-fences .cm-comment {
+    color: var(--cm-comment) !important;
+    font-style: italic;
+}
+
+.cm-s-inner .cm-keyword,
+.cm-s-inner .cm-atom,
+.md-fences .cm-keyword,
+.md-fences .cm-atom {
+    color: var(--cm-keyword) !important;
+}
+
+.cm-s-inner .cm-def,
+.cm-s-inner .cm-variable-2,
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type,
+.md-fences .cm-def,
+.md-fences .cm-variable-2,
+.md-fences .cm-variable-3,
+.md-fences .cm-type {
+    color: var(--cm-def) !important;
+}
+
+.cm-s-inner .cm-string,
+.cm-s-inner .cm-string-2,
+.md-fences .cm-string,
+.md-fences .cm-string-2 {
+    color: var(--cm-string) !important;
+}
+
+.cm-s-inner .cm-number,
+.md-fences .cm-number {
+    color: var(--cm-number) !important;
+}
+
+.cm-s-inner .cm-builtin,
+.cm-s-inner .cm-qualifier,
+.md-fences .cm-builtin,
+.md-fences .cm-qualifier {
+    color: var(--cm-builtin) !important;
+}
+
+.cm-s-inner .cm-tag,
+.cm-s-inner .cm-attribute,
+.cm-s-inner .cm-property,
+.cm-s-inner .cm-link,
+.cm-s-inner .cm-meta,
+.md-fences .cm-tag,
+.md-fences .cm-attribute,
+.md-fences .cm-property,
+.md-fences .cm-link,
+.md-fences .cm-meta {
+    color: var(--cm-tag) !important;
+}
+
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-bracket,
+.cm-s-inner .cm-punctuation,
+.md-fences .cm-operator,
+.md-fences .cm-variable,
+.md-fences .cm-bracket {
+    color: var(--cm-operator) !important;
+}
+
+.cm-s-inner .cm-error,
+.md-fences .cm-error {
+    color: var(--cm-error) !important;
+}
+
+.cm-s-inner .cm-header,
+.md-fences .cm-header {
+    color: var(--heading-color) !important;
+    font-weight: 700;
+}
+
+.cm-s-inner .cm-hr,
+.md-fences .cm-hr {
+    color: var(--uranus-400) !important;
+}
+
+.md-fences .cm-s-inner.cm-s-null-scroll {
+    color: var(--code-text-color) !important;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    width: 100%;
+    font-size: 0.94em;
+    line-height: 1.7;
+}
+
+thead {
+    background-color: var(--table-header-bg-color);
+}
+
+th {
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: left;
+    letter-spacing: 0.02em;
+}
+
+table tr th,
+table tr td {
+    padding: 0.62rem 0.85rem;
+    border: 1px solid var(--border-color);
+    word-break: keep-all;
+    vertical-align: top;
+}
+
+table thead tr th {
+    border-bottom: 2px solid var(--uranus-300);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--table-alt-bg-color);
+}
+
+tbody tr:hover {
+    background-color: var(--table-hover-bg-color);
+}
+
+.md-table-edit {
+    background-color: var(--panel-bg-color);
+    border-color: var(--border-color);
+}
+
+#typora-table-col-tracker,
+#typora-table-row-tracker,
+.typora-table-drag-area {
+    background-color: var(--uranus-200);
+}
+
+/* ==========================================================================
+   Images, footnotes, table of contents
+   ========================================================================== */
+
+img {
+    max-width: 100%;
+    border-radius: 6px;
+}
+
+figure {
+    margin: 1.5rem 0;
+}
+
+figcaption,
+.md-image > .md-meta {
+    font-family: var(--font-ui);
+    font-size: 0.84em;
+    color: var(--muted-color);
+}
+
+.md-meta,
+.md-before,
+.md-after {
+    color: var(--uranus-500);
+    font-size: 0.92em;
+}
+
+.md-tag {
+    color: var(--uranus-400);
+    opacity: 0.85;
+}
+
+sup.md-footnote {
+    background-color: var(--uranus-100);
+    color: var(--uranus-700);
+    border-radius: 4px;
+}
+
+.md-def-name {
+    color: var(--uranus-700);
+}
+
+.md-def-footnote {
+    color: var(--muted-color);
+}
+
+.footnotes {
+    font-size: 0.92em;
+    color: var(--muted-color);
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.md-toc {
+    margin: 1.6rem 0;
+    padding: 1.1rem 1.35rem;
+    background-color: var(--quote-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.94em;
+}
+
+.md-toc-content {
+    line-height: 1.85;
+}
+
+.md-toc-item {
+    color: var(--accent-color);
+}
+
+.md-toc-inner:hover {
+    text-decoration: none;
+    color: var(--accent-hover-color);
+}
+
+.md-toc-h1 .md-toc-inner {
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Math and diagrams
+   ========================================================================== */
+
+.md-math-block,
+.md-inline-math,
+.MathJax,
+.MathJax_Display {
+    color: var(--text-color) !important;
+}
+
+.md-math-block {
+    margin: 1.4rem 0;
+}
+
+.md-inline-math script {
+    color: var(--uranus-700);
+}
+
+.md-mathjax-midline {
+    background-color: var(--uranus-100);
+    border-bottom: none;
+}
+
+.md-rawblock-tooltip,
+.md-rawblock-control {
+    background-color: var(--panel-bg-color);
+    color: var(--muted-color);
+    border-color: var(--border-color);
+}
+
+.md-diagram-panel {
+    background-color: var(--code-bg-color);
+    border: 1px solid var(--code-border-color);
+    border-radius: 8px;
+}
+
+.md-diagram-panel-preview {
+    padding: 0.6rem;
+}
+
+.md-diagram-panel-error {
+    color: var(--cm-error);
+}
+
+.md-diagram-panel-preview .node rect,
+.md-diagram-panel-preview .node circle,
+.md-diagram-panel-preview .node ellipse,
+.md-diagram-panel-preview .node polygon,
+.md-diagram-panel-preview .node path {
+    fill: var(--uranus-100) !important;
+    stroke: var(--uranus-400) !important;
+}
+
+.md-diagram-panel-preview .cluster rect {
+    fill: var(--aqua-050) !important;
+    stroke: var(--aqua-300) !important;
+}
+
+.md-diagram-panel-preview .edgePath .path,
+.md-diagram-panel-preview .flowchart-link {
+    stroke: var(--uranus-500) !important;
+}
+
+.md-diagram-panel-preview .arrowheadPath,
+.md-diagram-panel-preview marker path {
+    fill: var(--uranus-500) !important;
+    stroke: none !important;
+}
+
+.md-diagram-panel-preview .nodeLabel,
+.md-diagram-panel-preview .edgeLabel,
+.md-diagram-panel-preview .label,
+.md-diagram-panel-preview text {
+    fill: var(--heading-color) !important;
+    color: var(--heading-color) !important;
+    font-family: var(--font-mono) !important;
+}
+
+.md-diagram-panel-preview .edgeLabel rect {
+    fill: var(--code-bg-color) !important;
+    opacity: 0.9;
+}
+
+.md-diagram-panel-preview .actor {
+    fill: var(--uranus-100) !important;
+    stroke: var(--uranus-400) !important;
+}
+
+.md-diagram-panel-preview .messageLine0,
+.md-diagram-panel-preview .messageLine1 {
+    stroke: var(--uranus-500) !important;
+}
+
+.md-diagram-panel-preview .labelBox {
+    fill: var(--aqua-100) !important;
+    stroke: var(--aqua-400) !important;
+}
+
+/* ==========================================================================
+   Search and focus
+   ========================================================================== */
+
+.md-search-hit {
+    background-color: var(--search-hit-bg-color);
+    border-radius: 3px;
+}
+
+.md-search-select,
+.md-search-hit.md-search-select {
+    background-color: var(--aqua-300);
+}
+
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) *,
+.on-focus-mode li[cid]:not(.md-focus-container) {
+    color: #93a8af !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container) > input {
+    opacity: 0.45;
+}
+
+.on-focus-mode blockquote {
+    border-image: none;
+    border-left-color: var(--uranus-200);
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code > *:not(.CodeMirror-activeline) * {
+    color: #93a8af !important;
+}
+
+/* ==========================================================================
+   Source mode
+   ========================================================================== */
+
+#typora-source {
+    font-family: var(--font-mono);
+    color: var(--code-text-color);
+    background-color: var(--bg-color);
+    line-height: 1.8;
+}
+
+#typora-source .CodeMirror-lines {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding-top: 32px;
+}
+
+#typora-source div.CodeMirror-cursor {
+    border-left: 2px solid var(--uranus-600);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#toggle-sourceview-btn:hover {
+    background-color: var(--active-file-bg-color);
+    color: var(--active-file-text-color);
+}
+
+/* ==========================================================================
+   Application chrome
+   ========================================================================== */
+
+#typora-sidebar,
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+    font-family: var(--font-ui);
+}
+
+.sidebar-content,
+.sidebar-tabs,
+.file-list-item,
+.file-node-content,
+.outline-item,
+.ty-search-item,
+.typora-quick-open-item {
+    font-family: var(--font-ui);
+}
+
+.sidebar-tabs {
+    border-bottom: 1px solid var(--divider-color);
+    color: var(--control-text-color);
+}
+
+.sidebar-tab.active,
+.ty-side-sort-btn.active {
+    color: var(--active-file-text-color);
+}
+
+.outline-item:hover,
+.file-list-item:hover,
+.file-node-content:hover,
+.outline-expander:hover,
+.ty-side-sort-btn:hover,
+.ty-search-item:hover {
+    background-color: var(--item-hover-bg-color);
+    color: var(--item-hover-text-color);
+}
+
+.file-tree-node.active > .file-node-content,
+.file-list-item.active,
+.outline-item.active,
+.ty-search-item.active {
+    background-color: var(--active-file-bg-color);
+    color: var(--active-file-text-color);
+    border-left: 2px solid var(--active-file-border-color);
+}
+
+.file-node-background {
+    background-color: transparent;
+}
+
+.file-list-item-file-name,
+.file-node-title,
+.outline-label {
+    color: var(--text-color);
+}
+
+.outline-h1 > .outline-item .outline-label {
+    font-weight: 600;
+}
+
+.outline-title-divider,
+.outline-item-wrapper {
+    border-color: var(--divider-color);
+}
+
+.file-tree-rename-input,
+.ty-input,
+input,
+textarea,
+select {
+    font-family: var(--font-ui);
+    background-color: #ffffff;
+    color: var(--text-color);
+    border: 1px solid var(--border-strong-color);
+    border-radius: 5px;
+}
+
+.ty-input:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--uranus-500);
+    box-shadow: 0 0 0 2px rgba(78, 156, 185, 0.18);
+}
+
+#typora-quick-open {
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--border-color);
+}
+
+#typora-quick-open-input {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#typora-quick-open-item,
+.typora-quick-open-item {
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--divider-color);
+}
+
+.typora-quick-open-item-path,
+.ty-quick-open-category-title,
+.ty-search-item-line {
+    color: var(--muted-color);
+}
+
+.ty-quick-open-category-list-inner {
+    border-color: var(--divider-color);
+}
+
+.ty-outline-hit,
+.ty-search-item .ty-search-hit {
+    background-color: var(--search-hit-bg-color);
+}
+
+#toc-dropmenu,
+.megamenu-menu,
+.megamenu-content,
+.dropdown-menu,
+.ty-preferences,
+.ty-tooltip,
+.md-f-tooltip {
+    font-family: var(--font-ui);
+    background-color: var(--window-bg-color);
+    color: var(--text-color);
+}
+
+.megamenu-menu-header,
+.megamenu-menu-list {
+    background-color: var(--side-bar-bg-color);
+    border-color: var(--divider-color);
+}
+
+.megamenu-opened .megamenu-menu-list li.active,
+.megamenu-menu-list li:hover {
+    background-color: var(--item-hover-bg-color);
+}
+
+.dropdown-menu .divider {
+    border-color: var(--divider-color);
+}
+
+.ty-footer,
+footer,
+.footer-item,
+.sidebar-footer-item {
+    font-family: var(--font-ui);
+    color: var(--control-text-color);
+    border-color: var(--divider-color);
+}
+
+.ty-spell-check-panel-item:hover {
+    background-color: var(--item-hover-bg-color);
+}
+
+.md-grid-board,
+.md-arrow {
+    color: var(--uranus-400);
+}
+
+.btn-primary,
+.primary-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-btn-border-color);
+    color: var(--primary-btn-text-color);
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--uranus-200);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--uranus-300);
+}
+
+/* ==========================================================================
+   Print and PDF export
+   ========================================================================== */
+
+@media print {
+    @page {
+        margin: 18mm 16mm;
+    }
+
+    html,
+    body,
+    #write {
+        background-color: #ffffff !important;
+    }
+
+    #write {
+        max-width: 100%;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.75;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+
+    p,
+    li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    pre,
+    .md-fences,
+    blockquote,
+    .md-alert,
+    table,
+    tr,
+    figure,
+    img,
+    .md-diagram-panel {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    a {
+        color: var(--uranus-700) !important;
+        border-bottom-color: var(--uranus-300) !important;
+    }
+
+    .md-fences[lang]::before {
+        color: #9aaeb5 !important;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.typora-export #write {
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.typora-export .md-fences,
+.typora-export pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.typora-export-sidebar {
+    font-family: var(--font-ui);
+    color: var(--muted-color);
+    border-right: 1px solid var(--divider-color);
+}
+
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label {
+    color: var(--accent-color);
+}

@@ -1,0 +1,52 @@
+/*
+ * Uranus White — the Uranus theme on a pure white page.
+ *
+ * Everything about the type, the spacing and the Uranus motif is inherited
+ * from uranus.css. Only the surface tokens change: the page goes to #ffffff,
+ * and every panel that used to sit on a tinted page is re-tuned so it keeps
+ * the same amount of separation from the paper it now sits on.
+ */
+@import url("./uranus.css");
+
+:root {
+    /* ---- surfaces ---- */
+    --bg-color: #ffffff;
+    --window-bg-color: #eff6f9;
+    --side-bar-bg-color: #f2f8fa;
+    --panel-bg-color: #f7fbfd;
+
+    /* ---- lines: white gives borders less to push against ---- */
+    --border-color: #dcebf1;
+    --border-strong-color: #c3dee7;
+    --divider-color: #e8f2f6;
+
+    /* ---- code ---- */
+    --code-bg-color: #f4fafc;
+    --code-border-color: #dbeaf0;
+    --inline-code-bg-color: #edf5f9;
+    --inline-code-border-color: #d7e9f0;
+
+    /* ---- blocks ---- */
+    --quote-bg-color: #f5fbfc;
+    --table-header-bg-color: #edf6fa;
+    --table-alt-bg-color: #f7fbfd;
+}
+
+/* The sidebar no longer shares the page colour, so it needs a seam. */
+#typora-sidebar,
+.mac-seamless-mode #typora-sidebar {
+    border-right: 1px solid var(--divider-color);
+}
+
+/* Tables read as floating rules on white, so an outer frame holds them
+   together. No radius here: border-collapse will not round the corners, and
+   clipping the overflow would cut off a wide table instead of scrolling it. */
+table {
+    border: 1px solid var(--border-strong-color);
+}
+
+@media print {
+    #typora-sidebar {
+        border-right: none;
+    }
+}
