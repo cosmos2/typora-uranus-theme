@@ -1,0 +1,8 @@
+/*
+ * Uranus Wide — the Uranus theme with a wider text column.
+ *
+ * Same paper, same palette, same motif as uranus.css. Only the measure and
+ * the leading change; see uranus/wide.css.
+ */
+@import url("./uranus.css");
+@import url("./uranus/wide.css");

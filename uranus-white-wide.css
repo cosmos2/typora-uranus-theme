@@ -1,0 +1,8 @@
+/*
+ * Uranus White Wide — the white-page variant with a wider text column.
+ *
+ * Combines the surface tokens of uranus-white.css with the measure of
+ * uranus/wide.css.
+ */
+@import url("./uranus-white.css");
+@import url("./uranus/wide.css");

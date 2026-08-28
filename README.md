@@ -6,12 +6,16 @@
 
 천왕성을 모티프로 삼은 Typora 라이트 테마입니다. 한글로 작성된 긴 리뷰 문서를 오랫동안 읽어도 눈이 덜 피로하도록 조판했습니다.
 
-배경색만 다른 두 가지 변형을 함께 제공합니다.
+배경색과 본문 폭을 조합한 네 가지 변형을 함께 제공합니다.
 
-| 테마 | 파일 | 본문 배경 |
-| --- | --- | --- |
-| Uranus | `uranus.css` | `#f8fcfd` (아주 옅은 청색 종이) |
-| Uranus White | `uranus-white.css` | `#ffffff` (순백) |
+| 테마 | 파일 | 본문 배경 | 본문 폭 |
+| --- | --- | --- | --- |
+| Uranus | `uranus.css` | `#f8fcfd` (아주 옅은 청색 종이) | 820px, 한 줄에 한글 약 44자 |
+| Uranus White | `uranus-white.css` | `#ffffff` (순백) | 820px, 한 줄에 한글 약 44자 |
+| Uranus Wide | `uranus-wide.css` | `#f8fcfd` (아주 옅은 청색 종이) | 1100px, 한 줄에 한글 약 61자 |
+| Uranus White Wide | `uranus-white-wide.css` | `#ffffff` (순백) | 1100px, 한 줄에 한글 약 61자 |
+
+한글은 글자 하나가 담는 정보량이 알파벳보다 많아서, 한 줄에 30자에서 45자 사이를 권장하는 경우가 많습니다. 기본 폭인 820px는 그 범위 안에 들어갑니다. 넓은 모니터를 충분히 활용하고 싶거나 코드와 표가 많은 문서를 자주 보신다면 Wide 변형을 사용하시기 바랍니다. Wide 변형은 한 줄이 길어진 만큼 행간도 2.0배로 넓혀서, 줄을 다 읽고 다음 줄 첫머리로 시선을 되돌릴 때 줄을 놓치지 않도록 했습니다.
 
 ## 미리보기
 
@@ -22,6 +26,12 @@
 ### Uranus White
 
 ![Uranus White](screenshots/uranus-white.png)
+
+### Uranus Wide
+
+![Uranus Wide](screenshots/uranus-wide.png)
+
+Wide 변형은 색상과 조판 규칙이 기본 테마와 완전히 같고 본문 폭과 행간만 다릅니다. `uranus-white-wide.css`는 흰 배경과 넓은 폭을 함께 적용한 조합입니다.
 
 저장소에 포함된 `preview.md`를 Typora에서 열면 위와 같은 화면을 직접 확인할 수 있습니다.
 
@@ -98,7 +108,7 @@ Expand-Archive "$env:TEMP\uranus.zip" -DestinationPath "$env:APPDATA\Typora\them
 
 1. [최신 릴리스](https://github.com/cosmos2/typora-uranus-theme/releases/latest)에서 `typora-uranus-theme.zip`을 내려받고 압축을 풉니다.
 2. Typora에서 `환경 설정 → 외관 → 테마 폴더 열기`를 눌러 테마 폴더를 엽니다.
-3. 압축을 푼 `uranus.css`와 `uranus-white.css`를 그 폴더에 복사합니다. 두 파일은 반드시 같은 폴더에 있어야 합니다. `uranus-white.css`가 `@import`로 `uranus.css`를 불러오기 때문입니다.
+3. 압축을 푼 CSS 파일 네 개와 `uranus` 폴더를 그 폴더에 통째로 복사합니다. 변형 테마들이 `@import`로 서로를 불러오기 때문에, 파일을 빠뜨리거나 위치를 바꾸면 해당 테마가 동작하지 않습니다.
 4. Typora를 다시 시작합니다.
 
 운영체제별 테마 폴더의 기본 경로는 다음과 같습니다.
@@ -133,14 +143,14 @@ brew install --cask font-d2coding font-fira-code font-pretendard
 
 | 변수 | 기본값 | 설명 |
 | --- | --- | --- |
-| `--content-width` | `820px` | 본문 최대 폭 |
+| `--content-width` | `820px` (Wide는 `1100px`) | 본문 최대 폭 |
 | `--bg-color` | `#f8fcfd` | 본문 배경색 |
 | `--text-color` | `#20343b` | 본문 글자색 |
 | `--accent-color` | `#256580` | 링크와 강조 텍스트 |
 | `--font-mono` | `"Fira Code", "D2Coding ligature", ...` | 본문 폰트 스택 |
 | `--code-bg-color` | `#f1f8fa` | 코드 블록 배경색 |
 
-행간과 자간은 `body` 규칙의 `line-height`와 `letter-spacing`에서 조정합니다.
+행간과 자간은 `body` 규칙의 `line-height`와 `letter-spacing`에서 조정합니다. Wide 변형의 폭과 행간만 바꾸고 싶으시다면 `uranus/wide.css` 한 파일만 고치면 두 Wide 테마에 모두 반영됩니다.
 
 테마 파일을 직접 고치는 대신 Typora의 사용자 정의 CSS 기능을 사용하려면, 테마 폴더에 `base.user.css` 파일을 만들고 그 안에서 같은 변수를 다시 정의하면 됩니다. 이렇게 하면 테마를 갱신해도 조정한 내용이 남습니다.
 
@@ -148,13 +158,24 @@ brew install --cask font-d2coding font-fira-code font-pretendard
 
 ```
 .
-├── uranus.css          # 기본 테마 (모든 조판 규칙을 담고 있음)
-├── uranus-white.css    # 흰 배경 변형 (표면 색상 변수만 재정의)
-├── preview.md          # 테마 확인용 예시 문서
-└── screenshots/        # README에 사용한 미리보기 이미지
+├── uranus.css              # 기본 테마 (모든 조판 규칙을 담고 있음)
+├── uranus-white.css        # 흰 배경 변형 (표면 색상 변수만 재정의)
+├── uranus-wide.css         # 넓은 본문 폭 변형
+├── uranus-white-wide.css   # 흰 배경과 넓은 폭을 함께 적용한 변형
+├── uranus/
+│   └── wide.css            # Wide 변형이 공유하는 폭과 행간 설정
+├── preview.md              # 테마 확인용 예시 문서
+└── screenshots/            # README에 사용한 미리보기 이미지
 ```
 
-`uranus-white.css`는 `@import url("./uranus.css")`로 기본 테마를 불러온 뒤 표면 색상 변수만 덮어씁니다. 폰트와 여백, 모티프 같은 조판 규칙이 한 파일에만 존재하므로, 수정할 때 두 테마가 서로 어긋나지 않습니다.
+모든 조판 규칙은 `uranus.css` 한 파일에만 존재하고, 나머지 세 테마는 `@import`로 그것을 불러온 뒤 필요한 변수만 덮어쓰는 구조입니다. 색상은 `uranus-white.css`가, 폭과 행간은 `uranus/wide.css`가 담당하며, `uranus-white-wide.css`는 그 둘을 함께 불러옵니다. 따라서 어느 한 곳을 고치면 그것을 사용하는 모든 테마에 일관되게 반영되며, 네 테마가 서로 어긋날 일이 없습니다.
+
+```
+uranus.css
+├── uranus-white.css            (+ 흰 배경 색상)
+├── uranus-wide.css             (+ uranus/wide.css)
+└── uranus-white-wide.css       (+ uranus-white.css + uranus/wide.css)
+```
 
 ## 호환성
 
